@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <title>Relogio</title>
+    <link href="https://fonts.googleapis.com/css?family=Questrial:regular" rel="stylesheet" />
+    <style>
+        @font-face {
+        font-family: "DS-Digital";
+        src: url(DS-DIGI.TTF);
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: "Questrial";
+            color: #ffff;
+            background-image: linear-gradient( #00e6d2, #0089b3);
+        }
+        h1{
+            margin: 40px;
+        }
+        #cron{
+            margin-bottom: -60px;
+        }
+        #relogio, #Cronometro{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font: 120px "DS-Digital";
+            width: 520px;
+            height: 180px;
+            text-align: center;
+            color: #000302ee;
+            background-color: #dbfff3;
+            border-radius: 70px;
+            border: 10px solid #50bfff;
+        }
+        #data{
+            margin: 40px;
+            width: 480px;
+            justify-content: center;
+            display: flex;
+            border-radius: 80px;
+            border: 5px solid #1d506d;
+            box-shadow: 0 9px #10364d;
+            background-color: #72b0d4;
+            font: 80px "DS-Digital";
+        }
+        .container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        button{
+            margin: -50px 30px 50px 30px;
+            width: 190px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            border-radius: 30px;
+            border: none;
+            color: #ffffff;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 30px;
+            transition: .8s;
+        }
+        button:hover{
+            height: 110px;
+            width: 200px;
+        }
+        button:active{
+            transform: translateY(0.5vh);
+        }
+        .comecar{
+            background-color: rgb(114, 228, 0);
+        }
+        .comecar:hover{
+            box-shadow: rgb(149, 255, 44) 0px 10px 60px -12px inset, rgb(149, 255, 44) 0px 18px 36px -18px inset, 0px 2px 18px rgb(149, 255, 44) ;
+            background-color: rgb(122, 243, 0);
+        }
+        .pause{
+            background-color: rgb(255, 192, 74);
+        }
+        .pause:hover{
+            box-shadow: rgb(255, 166, 0) 0px 10px 60px -12px inset, rgb(255, 166, 0) 0px 18px 36px -18px inset, 0px 2px 18px rgb(255, 166, 0) ;
+            background-color: rgb(255, 166, 0);
+        }
+        .reiniciar{
+            background-color: crimson;
+        }
+        .reiniciar:hover{
+            box-shadow: rgb(255, 10, 59) 0px 10px 60px -12px inset, rgb(255, 10, 59) 0px 18px 36px -18px inset, 0px 2px 18px rgb(255, 10, 59) ;
+            background-color: rgb(255, 0, 51);
+        }
+        .cronometro{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 90%;
+            flex-wrap: wrap;
+            background-color: #10364d;
+            border-radius: 24px;
+            margin-bottom: 60px;
+        }
+        #Cronometro{
+            border: none;
+            width: 800px;
+            border-radius: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1> Relogio Digital developed by Stitch Jaooo</h1>
+    <div id="relogio"></div>
+    <div id="data"></div>
+    </div>
+    <h1 id="cron">Cronometro developed by Stitch Jaoo</h1>
+    <div class="container">
+        <div class="cronometro">
+            <h2 id="Cronometro">00:00:00</h2>
+            <div class="container">
+                <button class="comecar" onclick="comecar()">Começar</button>
+                <!--começa a contagem do cronometro, iniciando um setInterval-->
+                <button class="pause" onclick="parar()">Pausar</button>
+                <!--ele congela a contagem(parando o setInterval), podendo continuar ou reiniciar-->
+                <button class="reiniciar" onclick="reiniciar()">Reiniciar</button>
+                <!--ele reinicia a contagem e a congela-->
+            </div>
+        </div>
+    </div>
+<script>
+        //treinando o setInterval 
+    function Relogio() {
+        var data= new Date();   
+        //pegando a classe date que disponibiliza a data atual
+        var ano = data.getFullYear();
+        var dia= data.getDate();       
+        var mes = data.getMonth()+1;
+        var minutos = data.getMinutes();
+        var segundos = data.getSeconds(); 
+        var hora = data.getHours();
+        var date = (dia<10 ? "0" + dia : dia) + "/" + (mes<10 ? "0" + mes : mes) + "/" + ano;
+        //dentro do parenteses existe tipo um if que verifica se o numero é menor que 10, se sim, é adicionado a string "0"
+        var relogio = (hora<10 ? "0"+hora : hora) + ":" + (minutos<10 ? "0"+minutos : minutos) + ":" + (segundos<10 ? "0"+segundos : segundos);
+        //a mesma coisa do date
+        document.getElementById("relogio").innerHTML = relogio;
+        //atualiza o relogio
+        document.getElementById("data").innerHTML = date;
+        //atualiza a data
+        }
+    setInterval(Relogio, 100);
+    //define o intervalo que haverá ate a função relogio ser chamada
+    var m=0;
+    var s=0;
+    var ms=0;
+    var time;
+    //declaração do minuto(m), segundo(s) e milisegundo(ms) pelo qual o cronometro começara
+    function comecar() {
+        time = setInterval(() => { rodando(); }, 10);
+        //iniciar o cronometro dizendo q a função será chamada a cada 10milisegundos
+    }
+    function parar() {
+        clearInterval(time);
+        //congela o cronometro
+    }
+    function reiniciar() {
+        clearInterval(time);
+        //congela o cronometro
+        m=0;
+        s=0;
+        ms=0;
+        //limpa o cronometro
+        var format = (m<10 ? "0" + m : m) + ":" + (s<10 ? "0" + s : s) + ":" + (ms<10 ? "0" + ms : ms);
+        //mesmo if de tudo q ocorre lá em cima
+        document.getElementById("Cronometro").innerHTML= format;
+    }
+    function rodando(CronometroFuncionando) {
+        ms+=1;
+        //cada vez q função é executada milisegundo soma mais um
+        if (ms>=100) {
+            ms=0;
+            s+=1;
+            //se os miliseegundos passar de 100, ele zera e os segundos somam mais um
+        }
+        if (s>=60) {
+            s=0;
+            m+=1;
+            //se os segundos passar de 60, ele zera e os minutos somam mais um
+        }
+        var format = (m<10 ? "0" + m : m) + ":" + (s<10 ? "0" + s : s) + ":" + (ms<10 ? "0" + ms : ms);
+        document.getElementById("Cronometro").innerHTML= format;
+        //atualiza o cronometro
+        }
+    </script>
+</body>
+</html>
