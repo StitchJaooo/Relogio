@@ -28,22 +28,27 @@
             justify-content: center;
             align-items: center;
             font: 120px "DS-Digital";
-            width: 520px;
-            height: 180px;
+            height: 180px;          
+            width: 800px;
             text-align: center;
             color: #000302ee;
-            background-color: #dbfff3;
             border-radius: 70px;
+            background-color: #dbfff3;
+            box-shadow: 0 8px 20px #004169;
+        }
+        #relogio{
             border: 10px solid #50bfff;
         }
         #data{
             margin: 40px;
-            width: 480px;
+            width: 600px;
+            height: 130px;
             justify-content: center;
             display: flex;
-            border-radius: 80px;
+            align-items: center;
+            border-radius: 50px;
             border: 5px solid #1d506d;
-            box-shadow: 0 9px #10364d;
+            box-shadow: 0 9px 10px #10364d;
             background-color: #72b0d4;
             font: 80px "DS-Digital";
         }
@@ -106,17 +111,46 @@
         }
         #Cronometro{
             border: none;
-            width: 800px;
             border-radius: 30px;
+        }
+        @media screen and (max-width: 990px) {
+            body{
+                overflow: hidden;
+            }
+            h1{
+                margin: 80px 40px 80px 40px;
+                font-size: 45px;
+            }
+            #relogio, #Cronometro{
+                font-size: 150px;
+            }
+            #data{
+                margin: 80px;
+            }
+            .cronometro{
+                margin-bottom: 700px;
+            }
+            button{
+                border-radius: 100%;
+                height: 200px;
+                width: 210px;
+                font-size: 45px;
+            }
+            button:hover{
+                height: 220px;
+                width: 230px;
+            }
         }
     </style>
 </head>
 <body>
     <h1> Relogio Digital developed by Stitch Jaooo</h1>
-    <div id="relogio"></div>
+        <div class="container">
+            <div id="relogio"></div>
+        </div>
     <div id="data"></div>
     </div>
-    <h1 id="cron">Cronometro developed by Stitch Jaoo</h1>
+    <h1>Cronometro developed by Stitch Jaoo</h1>
     <div class="container">
         <div class="cronometro">
             <h2 id="Cronometro">00:00:00</h2>
